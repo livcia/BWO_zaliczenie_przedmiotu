@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="app-description mb-4">
+    <h4 class="text-primary mb-3">CRUD - Zarządzanie Produktami</h4>
+    <p class="mb-0 text-secondary">
+      Zarządzaj produktami sklepu z poziomu interfejsu TechStore Pro. 
+      System pozwala na dodawanie, edycję, usuwanie oraz przeglądanie produktów.
+      Projekt zrealizowany w Angular.
+    </p>
+  </div>
+  <div class="d-flex gap-4 mb-4 overflow-auto">
+    <div class="table-container flex-grow-1 tabela_produktow" style="max-height: 500px; overflow: auto;">
+      <h2 class="section-title mb-4">Lista Produktów</h2>
+      <table class="table table-hover mx-auto">
+        <thead>
+          <tr>
+            @for (item of naglowki; track $index) {
+              <th>{{item}}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of products; track $index) {
+            <tr>
+              <td class="fw-bold text-primary">{{item.id}}</td>
+              <td class="text-white fw-bold">{{item.name}}</td>
+              <td class="text-light">{{item.producent}}</td>
+              <td><span class="text-info">{{item.category}}</span></td>
+              <td class="fw-bold text-success">{{item.price}} PLN</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="promo-container d-flex flex-column justify-content-center align-items-center">
+      <h5 class="promo-title mb-4 text-center">Promocje</h5>
+      <div class="d-flex flex-column gap-3">
+        <button type="button" class="btn btn-promo" (click)="promocja(0.1)">Promocja 10%</button>
+        <button type="button" class="btn btn-promo" (click)="promocja(0.25)">Promocja 25%</button>
+        <button type="button" class="btn btn-promo" (click)="promocja(0.5)">Promocja 50%</button>
+      </div>
+      <h5 class="promo-title mb-4 mt-4 text-center">Inflacja</h5>
+      <div class="d-flex flex-column gap-2 align-items-center">
+        <input type="number" class="form-control" [(ngModel)]="inflacjaValue" placeholder="np. 10" style="width: 120px; text-align: center;">
+        <button type="button" class="btn btn-promo" (click)="inflacja()">Podwyższ ceny</button>
+      </div>
+    </div>
+  </div>
+  <div class="form-container mb-4">
+    <h2 class="section-title mb-4">Edycja / Dodawanie Produktu</h2>
+    <form>
+      
+      <div class="mb-3">
+        <label for="id" class="form-label text-secondary">Wybierz produkt:</label>
+        <select id="id" name="id" class="form-select" [(ngModel)]="selectedId" (change)="pobierzProdukt()">
+          <option value="">-- Nowy produkt --</option>
+          @for (item of products; track $index) {
+            <option [value]="item.id">{{item.id}} - {{item.name}}</option>
+          }
+        </select>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label text-secondary" for="name">Nazwa produktu</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="np. RTX 4080" [(ngModel)]="name">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label text-secondary" for="producent">Producent</label>
+          <input type="text" class="form-control" id="producent" name="producent" placeholder="np. NVIDIA" [(ngModel)]="producent">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label text-secondary" for="category">Kategoria</label>
+          <select id="category" name="category" class="form-select" [(ngModel)]="category">
+            <option value="Karty Graficzne">Karty Graficzne</option>
+            <option value="Procesory">Procesory</option>
+            <option value="Pamięci RAM">Pamięci RAM</option>
+            <option value="Dyski SSD">Dyski SSD</option>
+            <option value="Płyty Główne">Płyty Główne</option>
+          </select>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label text-secondary" for="price">Cena (PLN)</label>
+          <input type="number" class="form-control" id="price" name="price" placeholder="0" [(ngModel)]="price">
+        </div>
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button type="button" class="btn btn-success" (click)="dodaj()">Dodaj Nowy</button>
+        <button type="button" class="btn btn-primary" (click)="aktualizuj()">Aktualizuj</button>
+        <button type="button" class="btn btn-danger" (click)="usun()">Usuń</button>
+      </div>
+    </form>
+  </div>
+</div>

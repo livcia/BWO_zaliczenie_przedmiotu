@@ -1,0 +1,19 @@
+{
+  "name": "techstore_server_express",
+  "version": "1.0.0",
+  "description": "Serwer Express dla projektu TechStore - CRUD produktów",
+  "license": "ISC",
+  "author": "Oliwia Ankiewicz",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^3.1.11"
+  }
+}

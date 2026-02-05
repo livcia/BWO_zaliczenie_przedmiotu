@@ -1,0 +1,19 @@
+/**
+ * ============================================================
+ * KONFIGURACJA TYPESCRIPT DLA APLIKACJI
+ * ============================================================
+ * 
+ * Rozszerza główny tsconfig.json o ustawienia specyficzne dla aplikacji.
+ * NIE EDYTUJ - chyba że wiesz co robisz!
+ * ============================================================
+ */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts"
+  ]
+}
